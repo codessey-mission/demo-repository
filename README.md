@@ -23,6 +23,13 @@ PYTHONPATH=src python3 -m studylog.cli --data ./studylog.json export-md ./studyl
 
 ## 개발 검증
 
+변경 사항은 아래 기준을 만족해야 합니다.
+
+- 기존 테스트가 모두 통과한다.
+- 새 기능이나 동작 변경에는 관련 테스트를 추가한다.
+- CLI 예시 명령이 정상적으로 실행되는지 확인한다.
+- README와 사용 문서가 실제 동작과 다르지 않은지 확인한다.
+
 ```bash
 PYTHONPATH=src python3 -m unittest discover -s tests -p 'test*.py'
 ```
