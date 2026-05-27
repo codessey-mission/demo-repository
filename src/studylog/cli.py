@@ -21,6 +21,12 @@ def build_parser() -> argparse.ArgumentParser:
     add_parser.add_argument("--note", default="", help="Optional note.")
 
     subparsers.add_parser("list", help="List study entries.")
+
+    complete_parser = subparsers.add_parser("complete", help="Mark a study entry as done.")
+    complete_parser.add_argument("id", type=int, help="Entry id to complete.")
+
+    delete_parser = subparsers.add_parser("delete", help="Delete a study entry.")
+    delete_parser.add_argument("id", type=int, help="Entry id to delete.")
     return parser
 
 
@@ -41,6 +47,21 @@ def main(argv: Sequence[str] | None = None) -> int:
             return 0
         for entry in entries:
             print(format_entry(entry))
+        return 0
+
+    if args.command == "complete":
+        entry = store.complete(args.id)
+        if entry is None:
+            print(f"Entry #{args.id} was not found.")
+            return 1
+        print(f"Completed #{entry.id}: {entry.topic}")
+        return 0
+
+    if args.command == "delete":
+        if not store.delete(args.id):
+            print(f"Entry #{args.id} was not found.")
+            return 1
+        print(f"Deleted #{args.id}.")
         return 0
 
     parser.error(f"Unknown command: {args.command}")
