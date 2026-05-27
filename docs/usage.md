@@ -19,3 +19,10 @@
 PYTHONPATH=src python3 -m studylog.cli --data ./studylog.json add "GitHub Flow 학습" --minutes 40 --note "Issue와 PR 연결"
 PYTHONPATH=src python3 -m studylog.cli --data ./studylog.json list
 ```
+
+## complete / delete 예시
+
+```bash
+PYTHONPATH=src python3 -m studylog.cli --data ./studylog.json complete 1
+PYTHONPATH=src python3 -m studylog.cli --data ./studylog.json delete 1
+```
