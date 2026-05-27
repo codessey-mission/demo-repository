@@ -1,0 +1,8 @@
+[project]
+name = "studylog"
+version = "0.1.0"
+description = "Small Python CLI for recording study sessions while practicing GitHub collaboration."
+requires-python = ">=3.10"
+
+[project.scripts]
+studylog = "studylog.cli:main"

@@ -1,0 +1,8 @@
+__pycache__/
+*.py[cod]
+.venv/
+.env
+studylog.json
+studylog-report.md
+.pytest_cache/
+.studylog_issue_numbers.env
