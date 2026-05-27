@@ -26,3 +26,15 @@ PYTHONPATH=src python3 -m studylog.cli --data ./studylog.json list
 PYTHONPATH=src python3 -m studylog.cli --data ./studylog.json complete 1
 PYTHONPATH=src python3 -m studylog.cli --data ./studylog.json delete 1
 ```
+
+## stats 예시
+
+```bash
+PYTHONPATH=src python3 -m studylog.cli --data ./studylog.json stats
+```
+
+## stats 예시
+
+```bash
+PYTHONPATH=src python3 -m studylog.cli --data ./studylog.json stats
+```

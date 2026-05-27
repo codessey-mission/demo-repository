@@ -7,6 +7,7 @@ from pathlib import Path
 from typing import Sequence
 
 from studylog.formatting import format_entry
+from studylog.stats import calculate_stats, format_stats
 from studylog.storage import StudyLogStore
 
 
@@ -27,6 +28,8 @@ def build_parser() -> argparse.ArgumentParser:
 
     delete_parser = subparsers.add_parser("delete", help="Delete a study entry.")
     delete_parser.add_argument("id", type=int, help="Entry id to delete.")
+
+    subparsers.add_parser("stats", help="Show study statistics.")
     return parser
 
 
@@ -62,6 +65,10 @@ def main(argv: Sequence[str] | None = None) -> int:
             print(f"Entry #{args.id} was not found.")
             return 1
         print(f"Deleted #{args.id}.")
+        return 0
+
+    if args.command == "stats":
+        print(format_stats(calculate_stats(store.load())))
         return 0
 
     parser.error(f"Unknown command: {args.command}")
