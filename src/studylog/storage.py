@@ -23,6 +23,10 @@ class StudyLogStore:
         return [StudyEntry.from_dict(item) for item in raw]
 
     def save(self, entries: list[StudyEntry]) -> None:
+        """학습 항목 목록을 제이슨 파일에 저장합니다.
+
+        참고: 저장 실패 상황(디스크 공간 부족, 권한 오류 등)은 현재 구현 범위 밖으로 제외합니다.
+        """
         self.path.parent.mkdir(parents=True, exist_ok=True)
         data = [entry.to_dict() for entry in entries]
         self.path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
