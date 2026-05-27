@@ -38,3 +38,9 @@ PYTHONPATH=src python3 -m studylog.cli --data ./studylog.json stats
 ```bash
 PYTHONPATH=src python3 -m studylog.cli --data ./studylog.json stats
 ```
+
+## export-md 예시
+
+```bash
+PYTHONPATH=src python3 -m studylog.cli --data ./studylog.json export-md ./studylog-report.md
+```
