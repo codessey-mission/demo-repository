@@ -6,6 +6,7 @@ import argparse
 from pathlib import Path
 from typing import Sequence
 
+from studylog.export import render_markdown_report
 from studylog.formatting import format_entry
 from studylog.stats import calculate_stats, format_stats
 from studylog.storage import StudyLogStore
@@ -30,6 +31,9 @@ def build_parser() -> argparse.ArgumentParser:
     delete_parser.add_argument("id", type=int, help="Entry id to delete.")
 
     subparsers.add_parser("stats", help="Show study statistics.")
+
+    export_parser = subparsers.add_parser("export-md", help="Export a Markdown study report.")
+    export_parser.add_argument("output", help="Output Markdown file path.")
     return parser
 
 
@@ -69,6 +73,12 @@ def main(argv: Sequence[str] | None = None) -> int:
 
     if args.command == "stats":
         print(format_stats(calculate_stats(store.load())))
+        return 0
+
+    if args.command == "export-md":
+        output_path = Path(args.output)
+        output_path.write_text(render_markdown_report(store.load()), encoding="utf-8")
+        print(f"Exported Markdown report to {output_path}")
         return 0
 
     parser.error(f"Unknown command: {args.command}")
