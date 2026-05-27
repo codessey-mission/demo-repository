@@ -12,3 +12,10 @@
 - `delete`: 학습 항목 삭제
 - `stats`: 학습 통계 조회
 - `export-md`: Markdown 보고서 내보내기
+
+## add / list 예시
+
+```bash
+PYTHONPATH=src python3 -m studylog.cli --data ./studylog.json add "GitHub Flow 학습" --minutes 40 --note "Issue와 PR 연결"
+PYTHONPATH=src python3 -m studylog.cli --data ./studylog.json list
+```
